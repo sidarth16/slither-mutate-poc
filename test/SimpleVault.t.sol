@@ -8,28 +8,16 @@ import "../src/SimpleVault.sol";
  * @title SimpleVaultTest
  * @notice These tests all PASS. Coverage looks great. But slither-mutate will reveal the truth.
  *
- * WHAT THESE TESTS COVER:
- *   ✅ Happy path deposit
- *   ✅ Happy path withdraw
- *   ✅ Overdraw protection
- *   ✅ Zero deposit protection
- *   ✅ Multiple users
- *
- * WHAT THESE TESTS MISS (slither-mutate will show this):
- *   ❌ Never assert totalDeposits strictly tracks ETH
- *   ❌ Never test what happens when invariant check is removed
- *   ❌ Never test force-send griefing vector
- *   ❌ Invariant check before vs after transfer — never tested
  */
 contract SimpleVaultTest is Test {
     SimpleVault vault;
     address alice = makeAddr("alice");
-    address bob   = makeAddr("bob");
+    address bob = makeAddr("bob");
 
     function setUp() public {
         vault = new SimpleVault();
         vm.deal(alice, 10 ether);
-        vm.deal(bob,   10 ether);
+        vm.deal(bob, 10 ether);
     }
 
     // ─────────────────────────────────────────────
